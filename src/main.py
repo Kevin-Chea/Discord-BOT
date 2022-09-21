@@ -98,5 +98,5 @@ async def count(ctx):
     for user in invisible:
         await ctx.send(user)
 
-token = "MTAyMjE5Mjk5MDkwNDY0NzY5MQ.GrhVxn.52M0h6YOiJasJVC3Dpuv2-7cLkJMqySCS_k-jw"
+token = ""
 bot.run(token)  # Starts the bot
