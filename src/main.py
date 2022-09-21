@@ -44,9 +44,17 @@ async def d6(ctx):
     await ctx.send(n)
 
 @bot.command(name="admin")
-async def admin(ctx):
-    t = discord.utils.get(ctx.guild.roles.name, name="admin")
-    await ctx.send(t)
+async def admin(ctx, nickname):
+    t = discord.utils.get(ctx.guild.roles, name="admin")
+    if t == None:
+        await ctx.guild.create_role(name="admin")
+    # Admin permissions  
+    role = discord.utils.get(ctx.guild.roles, name="admin")
+    perms = discord.Permissions(manage_channels=True, kick_members=True, ban_members=True)    
+    await role.edit(reason = None, colour = discord.Colour.red(), permissions=perms)
+    user = discord.utils.get(ctx.guild.members, nick=nickname)
+    if (user != None):
+        await user.add_roles(role)
 
 token = "MTAyMjE5Mjk5MDkwNDY0NzY5MQ.GrhVxn.52M0h6YOiJasJVC3Dpuv2-7cLkJMqySCS_k-jw"
 bot.run(token)  # Starts the bot
