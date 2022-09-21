@@ -56,5 +56,47 @@ async def admin(ctx, nickname):
     if (user != None):
         await user.add_roles(role)
 
+@bot.command(name="ban")
+async def ban(ctx, nickname):
+    user = discord.utils.get(ctx.guild.members, nick=nickname)
+    reason = "Ban via le bot. Paf !"
+    await user.ban(user, reason=reason)
+
+@bot.command(name="count")
+async def count(ctx):
+    online = []
+    idle = []
+    dnd = []
+    offline = []
+    invisible = []
+    for member in ctx.guild.members:
+        
+        if member.status == discord.Status.online:
+            online.append(member)
+        if member.status == discord.Status.idle:
+            idle.append(member)
+        if member.status == discord.Status.dnd:
+            dnd.append(member)
+        if member.status == discord.Status.offline:
+            offline.append(member)
+        if member.status == discord.Status.invisible:
+            invisible.append(member)
+    
+    await ctx.send("Members online : " + str(len(online)))
+    for user in online:
+        await ctx.send(user)
+    await ctx.send("Members idle : "  + str(len(idle)))
+    for user in idle:
+        await ctx.send(user)
+    await ctx.send("Members do not disturb : "  + str(len(dnd)))
+    for user in idle:
+        await ctx.send(user)
+    await ctx.send("Members offline : "  + str(len(offline)))
+    for user in offline:
+        await ctx.send(user)
+    await ctx.send("Members invisible : "  + str(len(invisible)))
+    for user in invisible:
+        await ctx.send(user)
+
 token = "MTAyMjE5Mjk5MDkwNDY0NzY5MQ.GrhVxn.52M0h6YOiJasJVC3Dpuv2-7cLkJMqySCS_k-jw"
 bot.run(token)  # Starts the bot
