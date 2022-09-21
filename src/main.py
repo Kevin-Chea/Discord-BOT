@@ -10,7 +10,7 @@ bot = commands.Bot(
     intents = intents # Set up basic permissions
 )
 
-bot.author_id = 0000000  # Change to your discord id
+bot.author_id = 688419703495983145  # Change to your discord id
 
 @bot.event
 async def on_ready():  # When the bot is ready
@@ -21,5 +21,5 @@ async def on_ready():  # When the bot is ready
 async def pong(ctx):
     await ctx.send('pong')
 
-token = "<MY_TOKEN>"
+token = "MTAyMjE5Mjk5MDkwNDY0NzY5MQ.GuFQr-.VTAOJYsZcSQRjsPP4hkOC08Nhagzl_0ZJ95-Ys"
 bot.run(token)  # Starts the bot
