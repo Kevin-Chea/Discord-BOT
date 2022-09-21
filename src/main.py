@@ -1,3 +1,4 @@
+from random import randrange
 from discord.ext import commands
 import discord
 
@@ -17,9 +18,27 @@ async def on_ready():  # When the bot is ready
     print("I'm in")
     print(bot.user)  # Prints the bot's username and identifier
 
+@bot.event
+async def on_message(message):
+    if message.content == "Salut tout le monde" :
+        channel = message.channel
+        user = message.author
+        returnMessage = "Salut tout seul"
+        await channel.send(returnMessage)
+        await channel.send(message.author.mention)
+
 @bot.command()
 async def pong(ctx):
     await ctx.send('pong')
 
-token = "MTAyMjE5Mjk5MDkwNDY0NzY5MQ.GuFQr-.VTAOJYsZcSQRjsPP4hkOC08Nhagzl_0ZJ95-Ys"
+@bot.command(name="name")
+async def name(ctx):
+    await ctx.send(ctx.author)
+
+@bot.command(name="d6")
+async def d6(ctx):
+    n = randrange(1, 7, 1)
+    await ctx.send(n)
+
+token = "MTAyMjE5Mjk5MDkwNDY0NzY5MQ.GrhVxn.52M0h6YOiJasJVC3Dpuv2-7cLkJMqySCS_k-jw"
 bot.run(token)  # Starts the bot
